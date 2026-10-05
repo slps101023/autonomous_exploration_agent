@@ -1,13 +1,7 @@
 <?xml version="1.0"?>
 <robot name="xlerobot">
 
-  <link name="world">
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="0" />
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
-    </inertial>
-  </link>
+  <link name="world" />
 
   <link name="chassis">
     <visual>
@@ -964,7 +958,7 @@
     </inertial>
   </link>
 
-  <joint name="joint_0" type="floating">
+  <joint name="joint_0" type="fixed">
     <parent link="world" />
     <child link="chassis" />
     <origin xyz="0 0 0.38" rpy="0 0 0" />
@@ -1273,5 +1267,117 @@
     <child link="head_camera_depth_frame" />
     <origin xyz="0 0 0" rpy="0 -1.5707911 -1.5707963" />
   </joint>
+
+  <ros2_control name="MujocoSystem" type="system">
+
+      <hardware>
+          <plugin>mujoco_ros2_control/MujocoSystemInterface</plugin>
+
+          <param name="mujoco_model">
+              /home/lihsun/autonomous_exploration_agent/src/simulation_bringup/model/scene.xml
+          </param>
+      </hardware>
+
+
+      <!-- ========================== -->
+      <!-- Wheels -->
+      <!-- ========================== -->
+
+      <joint name="left_wheel_joint">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="right_wheel_joint">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+
+      <!-- ========================== -->
+      <!-- Left Arm -->
+      <!-- ========================== -->
+
+      <joint name="Rotation_L">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Pitch_L">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Elbow_L">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Wrist_Pitch_L">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Wrist_Roll_L">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Jaw_L">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+
+      <!-- ========================== -->
+      <!-- Right Arm -->
+      <!-- ========================== -->
+
+      <joint name="Rotation_R">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Pitch_R">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Elbow_R">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Wrist_Pitch_R">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Wrist_Roll_R">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="Jaw_R">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+
+      <!-- ========================== -->
+      <!-- Head -->
+      <!-- ========================== -->
+
+      <joint name="head_pan_joint">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="head_tilt_joint">
+          <state_interface name="position"/>
+          <state_interface name="velocity"/>
+      </joint>
+
+  </ros2_control>
 
 </robot>

@@ -1,6 +1,30 @@
+import os
+from glob import glob
 from setuptools import find_packages, setup
 
 package_name = 'simulation_bringup'
+
+def get_data_files(directory):
+    data_files = []
+
+    for root, dirs, files in os.walk(directory):
+        if files:
+            install_dir = os.path.join(
+                'share',
+                package_name,
+                root
+            )
+
+            file_paths = [
+                os.path.join(root, file)
+                for file in files
+            ]
+
+            data_files.append(
+                (install_dir, file_paths)
+            )
+
+    return data_files
 
 setup(
     name=package_name,
@@ -10,7 +34,9 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-    ],
+        (os.path.join('share', package_name, 'launch'),glob(os.path.join('launch', '*launch.*'))),
+        (os.path.join('share', package_name, 'config'),glob(os.path.join('config', '*yaml'))),
+    ] + get_data_files('model'),
     package_data={'': ['py.typed']},
     install_requires=['setuptools'],
     zip_safe=True,

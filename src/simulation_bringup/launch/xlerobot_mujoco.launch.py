@@ -1,7 +1,11 @@
 import os
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
+from launch.actions import (
+    DeclareLaunchArgument,
+    IncludeLaunchDescription,
+)
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 
 from launch_ros.actions import Node
@@ -55,10 +59,10 @@ def generate_launch_description():
         "controllers.yaml",
     )
 
-    rviz_config_path = os.path.join(
-        simulation_bringup_dir,
-        "rviz",
-        "xlerobot.rviz",
+    display_launch_path = os.path.join(
+        robot_description_dir,
+        "launch",
+        "display.launch.py",
     )
 
 
@@ -124,41 +128,19 @@ def generate_launch_description():
 
 
     # ============================================================
-    # robot_state_publisher
+    # Include display.launch.py
     # ============================================================
 
-    robot_state_publisher_node = Node(
-        package="robot_state_publisher",
-        executable="robot_state_publisher",
-        name="robot_state_publisher",
-        output="screen",
-        parameters=[
-            {
-                "robot_description": robot_description,
-                "use_sim_time": use_sim_time,
-            }
-        ],
-    )
-
-
-    # ============================================================
-    # RViz
-    # ============================================================
-
-    rviz_node = Node(
-        package="rviz2",
-        executable="rviz2",
-        name="rviz2",
-        output="screen",
-        arguments=[
-            "-d",
-            rviz_config_path,
-        ],
-        parameters=[
-            {
-                "use_sim_time": use_sim_time,
-            }
-        ],
+    display_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            display_launch_path
+        ),
+        launch_arguments={
+            "model": urdf_path,
+            "use_sim_time": use_sim_time,
+            "use_gui": "false",
+            "use_rviz": "true",
+        }.items(),
     )
 
 
@@ -172,6 +154,5 @@ def generate_launch_description():
 
         mujoco_ros2_control_node,
         joint_state_broadcaster_node,
-        robot_state_publisher_node,
-        rviz_node,
+        display_launch,
     ])

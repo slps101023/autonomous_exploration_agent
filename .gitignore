@@ -4,3 +4,4 @@
 /.venv/
 /temp/
 MUJOCO_LOG.TXT
+/test_xlerobot/

@@ -114,32 +114,33 @@
     </inertial>
   </link>
 
-  <!-- 輪組底板 -->
-  <link name="wheel_base_plate">
-    <visual>
-      <geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/base_plate_layer1-v5-1.stl" scale="0.001 0.001 0.001" /></geometry>
-      <material name="wheel_base_plate_mat"><color rgba="0.1 0.1 0.1 1" /></material>
-    </visual>
+  <link name="left_wheel">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.04" />
+      </geometry>
+    </collision>
     <inertial>
-      <origin xyz="0 -0.0000271555 -0.0035" />
-      <mass value="1.9468624348344596" />
-      <inertia ixx="0.005637109888809055" ixy="0" ixz="0" iyy="0.005628440956780792" iyz="0" izz="0.0112496514690387" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
     </inertial>
   </link>
 
-  <!-- Omni-directional three-wheel assembly. -->
-<link name="wheel_1_mount"><visual><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/drive_motor_mount-v4-3.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><origin xyz="0.00017900182 -0.00069144862 0.00043481874" /><mass value="0.03588401719" /><inertia ixx="3.2235543e-6" ixy="-1.4488185e-8" ixz="-3.4701846e-8" iyy="3.9012842e-6" iyz="1.0877685e-7" izz="6.8907218e-6" /></inertial></link>
-<link name="wheel_1_motor"><visual><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/ST3215_Servo_Motor-v1-2.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><origin xyz="-0.014664257 -0.008722817 0.000001219" /><mass value="0.06589629619" /><inertia ixx="1.0300908e-5" ixy="1.1951582e-7" ixz="-1.7998869e-9" iyy="1.3913692e-5" iyz="8.8855015e-10" izz="1.8215749e-5" /></inertial></link>
-<link name="wheel_1_hub"><visual><origin xyz="0 0 0.0015875" /><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/3_8-Hex-Bore-Plastic-VersaHub-217-5828-v2-2.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><origin xyz="0 0 0.0039686166" /><mass value="0.0866549611" /><inertia ixx="1.2296292e-5" ixy="0" ixz="0" iyy="1.2296276e-5" iyz="0" izz="2.2911778e-5" /></inertial></link>
-<link name="wheel_1"><visual><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/simplify_4-Omni-Directional-Wheel_Single_Body-v1-2.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><mass value="1.3542854082" /><inertia ixx="0.0010936200" ixy="0" ixz="0" iyy="0.0010936108" iyz="0" izz="0.0018798128" /></inertial></link>
-<link name="wheel_2_mount"><visual><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/drive_motor_mount-v4-2.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><origin xyz="0.00017900182 -0.00069144862 0.00043481874" /><mass value="0.03588401719" /><inertia ixx="3.2235543e-6" ixy="-1.4488185e-8" ixz="-3.4701846e-8" iyy="3.9012842e-6" iyz="1.0877685e-7" izz="6.8907218e-6" /></inertial></link>
-<link name="wheel_2_motor"><visual><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/ST3215_Servo_Motor-v1-1.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><origin xyz="-0.014664257 -0.008722817 0.000001219" /><mass value="0.06589629619" /><inertia ixx="1.0300908e-5" ixy="1.1951582e-7" ixz="-1.7998869e-9" iyy="1.3913692e-5" iyz="8.8855015e-10" izz="1.8215749e-5" /></inertial></link>
-<link name="wheel_2_hub"><visual><origin xyz="-0.0000001028 0 0.001587322" /><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/3_8-Hex-Bore-Plastic-VersaHub-217-5828-v2-1.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><origin xyz="-0.0000001028 0 0.003968439" /><mass value="0.0866549611" /><inertia ixx="1.2296292e-5" ixy="0" ixz="0" iyy="1.2296276e-5" iyz="0" izz="2.2911778e-5" /></inertial></link>
-<link name="wheel_2"><visual><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/simplify_4-Omni-Directional-Wheel_Single_Body-v1-1.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><mass value="1.3542854082" /><inertia ixx="0.0010936200" ixy="0" ixz="0" iyy="0.0010936108" iyz="0" izz="0.0018798128" /></inertial></link>
-<link name="wheel_3_mount"><visual><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/drive_motor_mount-v4-1.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><origin xyz="0.00017900182 -0.00069144862 0.00043481874" /><mass value="0.03588401719" /><inertia ixx="3.2235543e-6" ixy="-1.4488185e-8" ixz="-3.4701846e-8" iyy="3.9012842e-6" iyz="1.0877685e-7" izz="6.8907218e-6" /></inertial></link>
-<link name="wheel_3_motor"><visual><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/ST3215_Servo_Motor-v1.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><origin xyz="-0.014664257 -0.008722817 0.000001219" /><mass value="0.06589629619" /><inertia ixx="1.0300908e-5" ixy="1.1951582e-7" ixz="-1.7998869e-9" iyy="1.3913692e-5" iyz="8.8855015e-10" izz="1.8215749e-5" /></inertial></link>
-<link name="wheel_3_hub"><visual><origin xyz="0 -0.0000000130 0.001587478" /><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/3_8-Hex-Bore-Plastic-VersaHub-217-5828-v2.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><origin xyz="0 -0.0000000130 0.003968594" /><mass value="0.0866549611" /><inertia ixx="1.2296292e-5" ixy="0" ixz="0" iyy="1.2296276e-5" iyz="0" izz="2.2911778e-5" /></inertial></link>
-<link name="wheel_3"><visual><geometry><mesh filename="package://robot_description/urdf/xlerobot/meshes/xlerobot/assets/simplify_4-Omni-Directional-Wheel_Single_Body-v1.stl" scale="0.001 0.001 0.001" /></geometry></visual><inertial><mass value="1.3542854082" /><inertia ixx="0.0010936200" ixy="0" ixz="0" iyy="0.0010936108" iyz="0" izz="0.0018798128" /></inertial></link>
+  <link name="right_wheel">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.04" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+    </inertial>
+  </link>
 
   <link name="Base">
     <visual>
@@ -975,24 +976,21 @@
     <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
 
-  <joint name="wheel_base_plate_fixed" type="fixed">
-    <parent link="chassis" /><child link="wheel_base_plate" />
-    <origin xyz="0 0 -0.3444" rpy="0 0 -1.5708" />
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="chassis" />
+    <child link="left_wheel" />
+    <origin xyz="-0.15 0.225 -0.32" rpy="1.5707963 0 3.1415927" />
+    <axis xyz="0 0 1" />
+    <limit effort="0" velocity="0" />
   </joint>
-  <joint name="wheel_1_mount_fixed" type="fixed"><parent link="wheel_base_plate" /><child link="wheel_1_mount" /><origin xyz="-0.02061 -0.09 0.002" rpy="0 0 -1.5707963268" /></joint>
-  <joint name="wheel_1_motor_fixed" type="fixed"><parent link="wheel_1_mount" /><child link="wheel_1_motor" /><origin xyz="0.0096 -0.00489 0.01436" rpy="0 0 -1.5707963268" /></joint>
-  <joint name="ST3215_Servo_Motor-v1-2_Hub---Servo" type="continuous"><parent link="wheel_1_motor" /><child link="wheel_1_hub" /><origin xyz="-0.0255 0.012775 0" rpy="-1.5707963268 0 3.1415926536" /><axis xyz="0 0 1" /><limit effort="5" velocity="2" /></joint>
-  <joint name="wheel_1_wheel_fixed" type="fixed"><parent link="wheel_1_hub" /><child link="wheel_1" /><origin xyz="0 -0.0000001021 -0.016675" rpy="0 0 -2.6179938780" /></joint>
 
-  <joint name="wheel_2_mount_fixed" type="fixed"><parent link="wheel_base_plate" /><child link="wheel_2_mount" /><origin xyz="0.0882472863 0.0271512164 0.002" rpy="0 0 0.5235987756" /></joint>
-  <joint name="wheel_2_motor_fixed" type="fixed"><parent link="wheel_2_mount" /><child link="wheel_2_motor" /><origin xyz="0.0104 -0.00489 0.01436" rpy="0 0 -1.5707963268" /></joint>
-  <joint name="ST3215_Servo_Motor-v1-1_Hub-2---Servo" type="continuous"><parent link="wheel_2_motor" /><child link="wheel_2_hub" /><origin xyz="-0.0254998972 0.0096001780 0" rpy="-1.5707963268 0 0" /><axis xyz="0 0 1" /><limit effort="5" velocity="2" /></joint>
-  <joint name="wheel_2_wheel_fixed" type="fixed"><parent link="wheel_2_hub" /><child link="wheel_2" /><origin xyz="0 0 0.019049822" rpy="3.1415926536 0 1.8325957146" /></joint>
-
-  <joint name="wheel_3_mount_fixed" type="fixed"><parent link="wheel_base_plate" /><child link="wheel_3_mount" /><origin xyz="-0.0676372863 0.0628487836 0.002" rpy="0 0 2.6179938780" /></joint>
-  <joint name="wheel_3_motor_fixed" type="fixed"><parent link="wheel_3_mount" /><child link="wheel_3_motor" /><origin xyz="0.0104 -0.00489 0.01436" rpy="0 0 -1.5707963268" /></joint>
-  <joint name="ST3215_Servo_Motor-v1_Revolute-40" type="continuous"><parent link="wheel_3_motor" /><child link="wheel_3_hub" /><origin xyz="-0.0254998972 0.0096001780 0" rpy="-1.5707963268 0 0" /><axis xyz="0 0 1" /><limit effort="5" velocity="2" /></joint>
-  <joint name="wheel_3_wheel_fixed" type="fixed"><parent link="wheel_3_hub" /><child link="wheel_3" /><origin xyz="0 0 0.019049822" rpy="3.1415926536 0 1.8325957146" /></joint>
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="chassis" />
+    <child link="right_wheel" />
+    <origin xyz="-0.15 -0.225 -0.32" rpy="1.5707963 0 3.1415927" />
+    <axis xyz="0 0 1" />
+    <limit effort="0" velocity="0" />
+  </joint>
 
   <joint name="fixed_Base" type="fixed">
     <parent link="chassis" />
@@ -1285,19 +1283,13 @@
       <!-- Wheels -->
       <!-- ========================== -->
 
-      <joint name="ST3215_Servo_Motor-v1-2_Hub---Servo">
+      <joint name="left_wheel_joint">
         <command_interface name="velocity"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
       </joint>
 
-      <joint name="ST3215_Servo_Motor-v1-1_Hub-2---Servo">
-        <command_interface name="velocity"/>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
-      </joint>
-
-      <joint name="ST3215_Servo_Motor-v1_Revolute-40">
+      <joint name="right_wheel_joint">
         <command_interface name="velocity"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>

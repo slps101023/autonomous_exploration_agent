@@ -5,24 +5,14 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    diff_drive_controller:
-      type: diff_drive_controller/DiffDriveController
+    wheel_group_velocity_controller:
+      type: forward_command_controller/ForwardCommandController
 
 
-diff_drive_controller:
+wheel_group_velocity_controller:
   ros__parameters:
-
-    left_wheel_names:
-      - left_wheel_joint
-
-    right_wheel_names:
-      - right_wheel_joint
-
-    wheel_separation: 0.45
-    wheel_radius: 0.05
-
-    base_frame_id: chassis
-    odom_frame_id: odom
-
-    publish_rate: 50.0
-    enable_odom_tf: true
+    joints:
+      - ST3215_Servo_Motor-v1-2_Hub---Servo
+      - ST3215_Servo_Motor-v1-1_Hub-2---Servo
+      - ST3215_Servo_Motor-v1_Revolute-40
+    interface_name: velocity

@@ -1,0 +1,11 @@
+/**:
+  ros__parameters:
+    mujoco_plugins:
+      head_camera_plugin:
+        type: mujoco_ros2_control_plugins/CameraPlugin
+        camera_publish_rate: 5.0
+        head_rgb:
+          frame_name: head_camera_rgb_frame
+          image_topic: /head_camera/color/image_raw
+          info_topic: /head_camera/color/camera_info
+          depth_topic: /head_camera/depth/image_raw

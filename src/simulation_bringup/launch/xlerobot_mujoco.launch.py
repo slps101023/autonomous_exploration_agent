@@ -59,6 +59,12 @@ def generate_launch_description():
         "controllers.yaml",
     )
 
+    camera_config_path = os.path.join(
+        simulation_bringup_dir,
+        "config",
+        "mujoco_camera.yaml",
+    )
+
     display_launch_path = os.path.join(
         robot_description_dir,
         "launch",
@@ -107,7 +113,25 @@ def generate_launch_description():
                 "mujoco_model": mjcf_path,
             },
             controllers_config_path,
+            camera_config_path,
         ],
+    )
+
+    # ============================================================
+    # diff_drive_controller
+    # ============================================================
+
+    diff_drive_controller_node = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "diff_drive_controller",
+            "--controller-manager",
+            "/controller_manager",
+            "--param-file",
+            controllers_config_path,
+        ],
+        output="screen",
     )
 
 
@@ -151,8 +175,8 @@ def generate_launch_description():
     return LaunchDescription([
         use_sim_time_arg,
         mjcf_path_arg,
-
         mujoco_ros2_control_node,
         joint_state_broadcaster_node,
+        diff_drive_controller_node,
         display_launch,
     ])

@@ -1,3 +1,8 @@
 /build/
 /install/
 /log/
+/.venv/
+/temp/
+MUJOCO_LOG.TXT
+/test_xlerobot/
+MJDATA.TXT

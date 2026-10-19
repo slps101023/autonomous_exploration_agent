@@ -1,6 +1,10 @@
 <mujoco model="xlerobot">
   <compiler angle="radian" meshdir="assets/" texturedir="assets/"/>
   <asset>
+    <model
+      name="room_map"
+      file="room/YAZHI_TWIN_room_compatible.xml"
+      content_type="text/xml"/>
     <mesh name="raskogbody" content_type="model/stl" file="full/raskogbody.stl" scale="0.0009 0.001 0.0009"/>
     <mesh name="raskogwheel1" content_type="model/stl" file="full/raskogwheel1.stl" scale="0.0009 0.001 0.0009"/>
     <mesh name="raskogwheel2" content_type="model/stl" file="full/raskogwheel2.stl" scale="0.0009 0.001 0.0009"/>
@@ -52,7 +56,8 @@
 
 
   <worldbody>
-    <body name="chassis" pos="0 0 0.38">
+    <attach model="room_map" prefix="room_"/>
+    <body name="chassis" pos="2.85 4.7 0.38">
       <inertial pos="0.0110104 -0.00226467 -0.353953" quat="0.766985 0.104619 0.0860426 0.627205" mass="10.5482" diaginertia="0.21164 0.173824 0.0431086"/>
       <joint name="joint_0" type="free"/>
       <!-- Two parallel differential-drive modules using the existing omni wheel assemblies. -->

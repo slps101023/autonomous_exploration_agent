@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <robot name="xlerobot">
 
-  <link name="world" />
-
   <link name="chassis">
     <visual>
       <origin xyz="-0.01668 0.502 0.515" rpy="1.5708 0 0" />
@@ -971,12 +969,6 @@
     </inertial>
   </link>
 
-  <joint name="joint_0" type="fixed">
-    <parent link="world" />
-    <child link="chassis" />
-    <origin xyz="0 0 0.38" rpy="0 0 0" />
-  </joint>
-
   <joint name="fixed_chassis_geom_1" type="fixed">
     <parent link="chassis" />
     <child link="chassis_geom_1" />
@@ -1240,7 +1232,7 @@
     <child link="head_pan_link" />
     <origin xyz="-0.103 0 0.323" rpy="0 0 0" />
     <axis xyz="0 0 1" />
-    <limit lower="-3.2" upper="3.2" effort="0" velocity="0" />
+    <limit lower="-3.2" upper="3.2" effort="3.35" velocity="2.0" />
     <dynamics damping="0.6" friction="0.052" />
   </joint>
 
@@ -1255,7 +1247,7 @@
     <child link="head_tilt_link" />
     <origin xyz="0.001 0.002 0.09815" rpy="0 0 3.1415927" />
     <axis xyz="0 1 0" />
-    <limit lower="-0.76" upper="1.45" effort="0" velocity="0" />
+    <limit lower="-0.76" upper="1.45" effort="3.35" velocity="2.0" />
     <dynamics damping="0.6" friction="0.052" />
   </joint>
 
@@ -1386,12 +1378,18 @@
       <!-- ========================== -->
 
       <joint name="head_pan_joint">
-          <state_interface name="position"/>
+          <command_interface name="position"/>
+          <state_interface name="position">
+              <param name="initial_value">0.0</param>
+          </state_interface>
           <state_interface name="velocity"/>
       </joint>
 
       <joint name="head_tilt_joint">
-          <state_interface name="position"/>
+          <command_interface name="position"/>
+          <state_interface name="position">
+              <param name="initial_value">0.0</param>
+          </state_interface>
           <state_interface name="velocity"/>
       </joint>
 

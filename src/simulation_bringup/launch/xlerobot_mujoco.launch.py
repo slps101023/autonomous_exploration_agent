@@ -136,6 +136,24 @@ def generate_launch_description():
 
 
     # ============================================================
+    # head_position_controller
+    # ============================================================
+
+    head_position_controller_node = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "head_position_controller",
+            "--controller-manager",
+            "/controller_manager",
+            "--param-file",
+            controllers_config_path,
+        ],
+        output="screen",
+    )
+
+
+    # ============================================================
     # joint_state_broadcaster
     # ============================================================
 
@@ -178,5 +196,6 @@ def generate_launch_description():
         mujoco_ros2_control_node,
         joint_state_broadcaster_node,
         diff_drive_controller_node,
+        head_position_controller_node,
         display_launch,
     ])

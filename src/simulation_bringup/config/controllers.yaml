@@ -8,6 +8,16 @@ controller_manager:
     diff_drive_controller:
       type: diff_drive_controller/DiffDriveController
 
+    head_position_controller:
+      type: forward_command_controller/ForwardCommandController
+
+head_position_controller:
+  ros__parameters:
+    joints:
+      - head_pan_joint
+      - head_tilt_joint
+    interface_name: position
+
 diff_drive_controller:
   ros__parameters:
     left_wheel_names:
@@ -16,7 +26,7 @@ diff_drive_controller:
       - right_wheel_drive_joint
     wheel_radius: 0.081
     wheel_separation: 0.53
-    odom_frame_id: world
+    odom_frame_id: odom
     base_frame_id: chassis
     enable_odom_tf: true
     position_feedback: true

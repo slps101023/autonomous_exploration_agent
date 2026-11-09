@@ -169,6 +169,19 @@ def generate_launch_description():
     )
 
 
+    chassis_pose_broadcaster_node = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "chassis_pose_broadcaster",
+            "--controller-manager",
+            "/controller_manager",
+            "--param-file",
+            controllers_config_path,
+        ],
+        output="screen",
+    )
+
     # ============================================================
     # Include display.launch.py
     # ============================================================
@@ -197,5 +210,6 @@ def generate_launch_description():
         joint_state_broadcaster_node,
         diff_drive_controller_node,
         head_position_controller_node,
+        chassis_pose_broadcaster_node,
         display_launch,
     ])

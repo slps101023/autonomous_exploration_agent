@@ -280,6 +280,11 @@
     <site name="world" pos="0 0 0" quat="1.0 0 0 0"/>
   </worldbody>
 
+  <sensor>
+    <framepos name="chassis_pose_pos" objtype="site" objname="chassis"/>
+    <framequat name="chassis_pose_quat" objtype="site" objname="chassis"/>
+  </sensor>
+
   <actuator>
     <velocity name="left_wheel_velocity"
               joint="left_wheel_drive_joint"

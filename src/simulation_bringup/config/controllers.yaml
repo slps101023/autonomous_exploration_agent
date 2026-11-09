@@ -11,6 +11,9 @@ controller_manager:
     head_position_controller:
       type: forward_command_controller/ForwardCommandController
 
+    chassis_pose_broadcaster:
+      type: pose_broadcaster/PoseBroadcaster
+
 head_position_controller:
   ros__parameters:
     joints:
@@ -32,3 +35,8 @@ diff_drive_controller:
     position_feedback: true
     open_loop: false
     cmd_vel_timeout: 0.5
+
+chassis_pose_broadcaster:
+  ros__parameters:
+    pose_name: chassis_pose
+    frame_id: world

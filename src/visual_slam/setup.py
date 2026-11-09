@@ -19,6 +19,7 @@ setup(
     entry_points={
         'console_scripts': [
             'input_status = visual_slam.input_status:main',
+            'route_sbdcb = visual_slam.route_sbdcb:main',
         ],
     },
 )

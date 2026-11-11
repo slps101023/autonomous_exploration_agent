@@ -36,7 +36,7 @@ diff_drive_controller:
     open_loop: false
     cmd_vel_timeout: 0.5
 
-chassis_pose_broadcaster:
-  ros__parameters:
-    pose_name: chassis_pose
-    frame_id: world
+# chassis_pose_broadcaster:
+#   ros__parameters:
+#     pose_name: chassis_pose
+#     frame_id: world

@@ -6,3 +6,4 @@
 MUJOCO_LOG.TXT
 /test_xlerobot/
 MJDATA.TXT
+/src/visual_slam/maps/*.db

@@ -194,7 +194,7 @@ def generate_launch_description():
             "model": urdf_path,
             "use_sim_time": use_sim_time,
             "use_gui": "false",
-            "use_rviz": "true",
+            "use_rviz": "false",
         }.items(),
     )
 

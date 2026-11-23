@@ -49,7 +49,7 @@ def generate_launch_description():
         DeclareLaunchArgument('rgb_topic', default_value='/head_camera/color/image_raw'),
         DeclareLaunchArgument('depth_topic', default_value='/head_camera/depth/image_raw'),
         DeclareLaunchArgument('camera_info_topic', default_value='/head_camera/color/camera_info'),
-        DeclareLaunchArgument('odom_topic', default_value='/diff_drive_controller/odom'),
+        DeclareLaunchArgument('odom_topic', default_value='/rtabmap/odom'),
         DeclareLaunchArgument('frame_id', default_value='chassis'),
         DeclareLaunchArgument('approx_rgbd_sync', default_value='false'),
         DeclareLaunchArgument('approx_sync', default_value='true'),
@@ -131,6 +131,24 @@ def generate_launch_description():
             ('rgb/camera_info', camera_info_topic),
         ],
     )
+    visual_odometry = Node(
+        package='rtabmap_odom',
+        executable='rgbd_odometry',
+        name='rgbd_odometry',
+        namespace='rtabmap',
+        output='screen',
+        parameters=[{
+            'use_sim_time': ParameterValue(use_sim_time, value_type=bool),
+            'frame_id': frame_id,
+            'odom_frame_id': 'visual_odom',
+            'publish_tf': True,
+            'subscribe_rgbd': True,
+        }],
+        remappings=[
+            ('rgbd_image', '/rtabmap/rgbd_image'),
+            ('odom', '/rtabmap/odom'),
+        ],
+    )
     slam = Node(
         package='rtabmap_slam', executable='rtabmap',
         name='rtabmap', namespace='rtabmap', output='screen',
@@ -145,7 +163,7 @@ def generate_launch_description():
             'approx_sync': ParameterValue(approx_sync, value_type=bool),
             'database_path': ParameterValue(database_path, value_type=str),
             'Mem/IncrementalMemory': 'true',
-            'Mem/InitWMWithAllNodes': 'false',
+            'Mem/InitWMWithAllNodes': 'false',     
         }],
         remappings=[
             ('rgb/image', rgb_topic),
@@ -196,6 +214,7 @@ def generate_launch_description():
         simulation,
         head_controller,
         rgbd_sync,
+        visual_odometry,
         slam,
         rviz,
         point_cloud,

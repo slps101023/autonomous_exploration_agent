@@ -4,8 +4,32 @@
       head_camera_plugin:
         type: mujoco_ros2_control_plugins/CameraPlugin
         camera_publish_rate: 5.0
-        head_d415:
-          frame_name: head_camera_rgb_frame
-          image_topic: /head_camera/color/image_raw
-          info_topic: /head_camera/color/camera_info
-          depth_topic: /head_camera/depth/image_raw
+        room_room_interior:
+          policy: disabled
+        head_d435i_infra1:
+          frame_name: camera_infra1_optical_frame
+          image_topic: /camera/_sim/infra1/rgb
+          info_topic: /camera/_sim/infra1/camera_info
+          depth_topic: /camera/_sim/depth_float
+        head_d435i_infra2:
+          frame_name: camera_infra2_optical_frame
+          image_topic: /camera/_sim/infra2/rgb
+          info_topic: /camera/_sim/infra2/camera_info
+          depth_topic: /camera/_sim/infra2/depth_float
+        head_d435i_color:
+          frame_name: camera_color_optical_frame
+          image_topic: /camera/color/image_raw
+          info_topic: /camera/color/camera_info
+          depth_topic: /camera/_sim/color/depth_float
+
+/camera/d435i_bridge:
+  ros__parameters:
+    # RealSense-compatible depth: 16UC1 millimetres, zero means invalid.
+    min_depth: 0.1
+    max_depth: 10.0
+    # Optical transform p_color = p_depth + t (RGB is +15mm on body Y).
+    depth_to_color_translation: [0.015, 0.0, 0.0]
+    infra_baseline: 0.050
+    # Optical transform from depth to the nominal IMU origin.
+    depth_to_imu_translation: [-0.00552, 0.0051, 0.01174]
+    publish_legacy_head_topics: true

@@ -51,6 +51,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'd435i_bridge = simulation_bringup.d435i_bridge:main',
         ],
     },
 )
